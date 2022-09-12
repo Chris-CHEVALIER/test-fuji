@@ -49,9 +49,10 @@ export default function FujiForm() {
         const meows = await contract.getAllMeows();
         setMeows(meows);
         const provider = new ethers.providers.JsonRpcProvider("https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161");
-        provider.lookupAddress(contractAddress).then(resolvedName => {
-          console.log(resolvedName);
-        })
+        const address = await provider.resolveName("ricmoo.eth");
+        console.log(address);
+        const ens = await provider.lookupAddress("0x5555763613a12D8F3e73be831DFf8598089d3dCa");
+        console.log(ens);
       }
       catch (error) {
         console.log(error);
